@@ -10,20 +10,34 @@
   text-transform: uppercase; color: var(--text-muted);
 }
 
-/* Careers 模块 */
-.sts-careers-grid { display: grid; gap: 2.5rem; }
-.sts-careers-sub { margin-top: 1.25rem; font-size: 1.25rem; line-height: 1.4; font-weight: 500; letter-spacing: -.02em; color: var(--text-h1); }
-.sts-careers-fig { margin: 0; }
-.sts-careers-img { overflow: hidden; border-radius: var(--radius-sm); background: var(--page-alt); aspect-ratio: 5 / 4; }
-.sts-careers-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.sts-careers-fig figcaption {
-  margin-top: .75rem; font-size: .6875rem; font-weight: 500; letter-spacing: .14em;
-  text-transform: uppercase; color: var(--text-muted);
-}
+/* Careers 模块：宽幅图片标题 + 岗位卡片网格 */
+.sts-careers-banner { position: relative; overflow: hidden; border-radius: var(--radius-sm); background: #1b1c1a; height: clamp(17rem, 30vw, 24rem); }
+.sts-careers-banner img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; }
+.sts-careers-banner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(20, 20, 18, .8) 0%, rgba(20, 20, 18, .45) 45%, rgba(20, 20, 18, .08) 80%); }
+.sts-careers-banner-copy { position: absolute; z-index: 1; left: 1.5rem; right: 1.5rem; top: 50%; transform: translateY(-50%); max-width: 36rem; color: #fff; }
+.sts-careers-banner-copy .sts-label { color: #cfdcea; } .sts-careers-banner-copy .sts-label::before { background: #cfdcea; }
+.sts-careers-banner-title { margin-top: 1rem; font-size: clamp(2rem, 4.6vw, 3.6rem); line-height: 1.04; letter-spacing: -.035em; font-weight: 500; color: #fff; }
+.sts-careers-banner-sub { margin-top: .75rem; font-size: clamp(1.05rem, 1.6vw, 1.35rem); font-weight: 500; letter-spacing: -.015em; color: rgba(255, 255, 255, .88); }
+@media (min-width: 768px) { .sts-careers-banner-copy { left: 3rem; } }
+
+.sts-careers-row { display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: center; justify-content: space-between; margin-top: 2.5rem; }
+.sts-careers-row .sts-body { max-width: 40rem; }
+.sts-careers-row .sts-entry { margin-top: 0; }
+
+.sts-jobs { display: grid; gap: 1rem; margin-top: 1.75rem; }
+@media (min-width: 640px) { .sts-jobs { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .sts-jobs { grid-template-columns: repeat(4, 1fr); } }
+.sts-job { display: flex; flex-direction: column; min-height: 14rem; padding: 1.5rem; border: 1px solid var(--border-soft); border-radius: var(--radius-sm); background: var(--page-soft); transition: border-color .25s, transform .25s; }
+.sts-job:hover { border-color: var(--border-mid); transform: translateY(-2px); }
+.sts-job-top { display: flex; justify-content: space-between; align-items: center; gap: .5rem; }
+.sts-job-dept { font-size: .6875rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.sts-job-sample { padding: .1rem .45rem; border: 1px dashed var(--border-mid); border-radius: var(--radius-pill); font-size: .5625rem; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); }
+.sts-job-title { margin-top: .9rem; font-size: 1.2rem; font-weight: 500; letter-spacing: -.02em; line-height: 1.25; color: var(--text-h1); }
+.sts-job-sub { margin-top: .3rem; font-size: .8125rem; color: var(--text-muted); }
+.sts-job-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
+.sts-job-tags span { padding: .2rem .6rem; border: 1px solid var(--border-mid); border-radius: var(--radius-pill); font-size: .6875rem; letter-spacing: .04em; color: var(--text-body); }
+.sts-job-apply { margin-top: auto; padding-top: 1.25rem; font-size: .8125rem; }
 @media (max-width: 767px) {
-  .sts-careers-img { aspect-ratio: 16 / 10; }
-}
-@media (min-width: 1024px) {
-  .sts-careers-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 5rem; align-items: center; }
-  .sts-careers-sub { font-size: 1.5rem; }
+  .sts-careers-banner::after { background: linear-gradient(90deg, rgba(20, 20, 18, .82), rgba(20, 20, 18, .55)); }
+  .sts-job { min-height: 0; padding: 1.25rem; }
 }
