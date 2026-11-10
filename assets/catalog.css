@@ -1,0 +1,44 @@
+/* 产品目录：首页 Product Lineup 模块与 /products/ 页面共用。沿用原站变量与排版类 */
+.sts-cat-head { display: grid; gap: 1.5rem; }
+@media (min-width: 1024px) { .sts-cat-head { grid-template-columns: 1fr minmax(0, 30rem); align-items: end; gap: 4rem; } }
+
+/* 产品主图：统一深色画布 4:3 */
+.sts-cat-img { overflow: hidden; border-radius: var(--radius-sm); background: #121211; aspect-ratio: 4 / 3; }
+.sts-cat-img img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+a:hover .sts-cat-img img, .sts-cat-card:hover .sts-cat-img img { transform: scale(1.03); }
+
+/* 首页：四个类别卡片 */
+.sts-cat-grid { display: grid; gap: 2.5rem 1.5rem; margin-top: 3.5rem; }
+@media (min-width: 640px) { .sts-cat-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .sts-cat-grid { grid-template-columns: repeat(4, 1fr); margin-top: 4rem; } }
+.sts-cat-card { display: flex; flex-direction: column; color: inherit; }
+.sts-cat-num { margin-top: 1.25rem; font-size: .75rem; letter-spacing: .14em; color: var(--accent); }
+.sts-cat-name { margin-top: .5rem; font-size: 1.15rem; font-weight: 500; letter-spacing: -.02em; color: var(--text-h1); }
+.sts-cat-meta { margin-top: .5rem; font-size: .875rem; line-height: 1.6; color: var(--text-body); }
+.sts-cat-count { margin-top: .75rem; font-size: .6875rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--text-muted); }
+.sts-cat-foot { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-soft); display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: center; justify-content: space-between; }
+.sts-cat-foot p { font-size: .875rem; color: var(--text-muted); }
+
+/* 产品页 */
+.sts-pl-hero { padding-top: calc(72px + clamp(3.5rem, 8vw, 6rem)); padding-bottom: clamp(2.5rem, 5vw, 4rem); }
+.sts-pl-title { margin-top: 1.25rem; font-size: clamp(2.4rem, 5.2vw, 4rem); line-height: 1.02; letter-spacing: -.035em; font-weight: 500; color: var(--text-h1); }
+.sts-pl-jump { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 2.25rem; }
+.sts-pl-jump a {
+  display: inline-flex; align-items: center; gap: .5rem; padding: .55rem .9rem; border: 1px solid var(--border-mid);
+  border-radius: var(--radius-pill); font-size: .75rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--text-h1); transition: border-color .2s, color .2s;
+}
+.sts-pl-jump a:hover { border-color: var(--accent); color: var(--accent); }
+.sts-pl-jump a span { color: var(--text-muted); }
+.sts-pl-cat { padding-block: clamp(3.5rem, 7vw, 5.5rem); border-top: 1px solid var(--border-soft); scroll-margin-top: 72px; }
+.sts-pl-cat-head { display: grid; gap: 1rem; }
+@media (min-width: 1024px) { .sts-pl-cat-head { grid-template-columns: 1fr minmax(0, 30rem); align-items: end; gap: 4rem; } }
+.sts-pl-cat-title { margin-top: 1rem; font-size: clamp(1.75rem, 3.2vw, 2.5rem); line-height: 1.1; letter-spacing: -.03em; font-weight: 500; color: var(--text-h1); }
+.sts-pl-grid { display: grid; gap: 2.5rem 1.5rem; margin-top: 2.75rem; }
+@media (min-width: 640px) { .sts-pl-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .sts-pl-grid { grid-template-columns: repeat(3, 1fr); } .sts-pl-grid--4 { grid-template-columns: repeat(4, 1fr); } }
+.sts-pl-item h3 { margin-top: 1.1rem; font-size: 1.05rem; font-weight: 500; letter-spacing: -.015em; color: var(--text-h1); }
+.sts-pl-item .sts-pl-spec { margin-top: .4rem; font-size: .875rem; line-height: 1.6; color: var(--text-body); }
+.sts-pl-item .sts-link-arrow { margin-top: .9rem; font-size: .8125rem; }
+.sts-pl-note { padding-block: 2.5rem 4rem; font-size: .75rem; line-height: 1.7; color: var(--text-muted); max-width: 56rem; }
+.sts-pl-mnav[hidden] { display: none; }
