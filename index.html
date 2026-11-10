@@ -100,7 +100,7 @@
 })();
 </script><script>
 (function () {
-  var GROUPS = [{"key": "trio", "target": "#process", "where": "after", "cls": "sts-band sts-band--trio", "sizes": "(min-width: 768px) 34vw, 100vw", "imgs": [["scene-testing", "Hardware Testing", "硬件测试", "GPU cards and a server on a hardware testing bench"], ["scene-repair", "Repair & Testing", "维修检测", "Engineer testing a GPU board with a multimeter"], ["scene-assembly", "Server Assembly", "服务器装配", "Technician installing memory modules in a server"]]}, {"key": "datacenter", "target": "#ecosystem", "where": "after", "cls": "sts-band sts-band--wide sts-band--light", "sizes": "100vw", "imgs": [["scene-gpu-closeup", "Data Center Deployment", "数据中心部署", "Close-up of a GPU heatsink with a blue light line"]]}, {"key": "dispatch", "target": "#clients", "where": "before", "cls": "sts-band sts-band--wide sts-band--dispatch", "sizes": "100vw", "imgs": [["scene-dispatch", "Packing & Dispatch", "包装发货", "Packing components for shipment in a warehouse"]]}], IMG = "/stors-home-preview/assets/scenes", CSS = "/stors-home-preview/assets/scenes.css?v=dc2611a";
+  var GROUPS = [{"key": "trio", "target": "#process", "where": "after", "cls": "sts-band sts-band--trio", "sizes": "(min-width: 768px) 34vw, 100vw", "imgs": [["scene-testing", "Hardware Testing", "硬件测试", "GPU cards and a server on a hardware testing bench"], ["scene-repair", "Repair & Testing", "维修检测", "Engineer testing a GPU board with a multimeter"], ["scene-assembly", "Server Assembly", "服务器装配", "Technician installing memory modules in a server"]]}, {"key": "datacenter", "target": "#ecosystem", "where": "after", "cls": "sts-accent sts-accent--c", "html": "<div class=\"sts-container sts-accent-in\"><ul class=\"sts-accent-cats\"><li><span data-en=\"AI Servers\" data-zh=\"AI 服务器\"></span></li><li><span data-en=\"GPU Cards\" data-zh=\"GPU 显卡\"></span></li><li><span data-en=\"CPUs\" data-zh=\"CPU\"></span></li><li><span data-en=\"Memory\" data-zh=\"内存\"></span></li><li><span data-en=\"Storage\" data-zh=\"存储\"></span></li><li><span data-en=\"Repair\" data-zh=\"维修\"></span></li></ul></div>"}, {"key": "dispatch", "target": "#clients", "where": "before", "cls": "sts-band sts-band--wide sts-band--dispatch", "sizes": "100vw", "imgs": [["scene-dispatch", "Packing & Dispatch", "包装发货", "Packing components for shipment in a warehouse"]]}], IMG = "/stors-home-preview/assets/scenes", CSS = "/stors-home-preview/assets/scenes.css?v=c3f8a01";
   function lang() { return (document.documentElement.lang || '').indexOf('zh') === 0 ? 'zh' : 'en'; }
   function hydrated(el) { return el && Object.keys(el).some(function (k) { return k.indexOf('__reactFiber') === 0; }); }
   function fig(g, im) {
@@ -124,10 +124,10 @@
         box = document.createElement('div');
         box.className = g.cls;
         box.setAttribute('data-sts-scene', g.key);
-        box.innerHTML = g.imgs.map(function (im) { return fig(g, im); }).join('');
+        box.innerHTML = g.html || g.imgs.map(function (im) { return fig(g, im); }).join('');
         if (g.where === 'after') t.parentNode.insertBefore(box, t.nextSibling); else if (g.where === 'before') t.parentNode.insertBefore(box, t); else t.appendChild(box);
       }
-      box.querySelectorAll('figcaption').forEach(function (c) {
+      box.querySelectorAll('[data-en]').forEach(function (c) {
         var txt = c.getAttribute('data-' + l);
         if (c.textContent !== txt) c.textContent = txt;
       });

@@ -42,7 +42,12 @@
   .sts-band--dispatch .sts-scene-fig { height: clamp(20rem, 28vw, 28rem); }
 }
 
-/* 浅色产品图：不加暗角和说明文字，画面留白；保持右侧产品主体可见 */
-.sts-band--light .sts-scene-fig::after { display: none; }
-.sts-band--light figcaption { display: none; }
-.sts-band--light .sts-scene-fig img { object-position: 70% 50%; }
+/* 页面中段色带：在 Product Range 与 Hardware Repair 之间换一次底色，打破整页米白；品牌蓝细条，只放产品品类 */
+.sts-accent { position: relative; overflow: hidden; }
+
+/* C：细窄品牌蓝条，只放产品品类 */
+.sts-accent--c { background: #3d5a73; color: #fff; }
+.sts-accent-cats { list-style: none; margin: 0; padding: 1.6rem 0; display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem 0; }
+.sts-accent-cats li { font-size: .8125rem; letter-spacing: .22em; text-transform: uppercase; white-space: nowrap; }
+.sts-accent-cats li + li::before { content: ""; display: inline-block; width: 4px; height: 4px; background: #79b0ff; margin: 0 1.4rem; vertical-align: middle; }
+@media (min-width: 768px) { .sts-accent-cats { padding: 2.4rem 0; justify-content: space-between; } .sts-accent-cats li + li::before { margin: 0 1.4rem 0 0; } }
