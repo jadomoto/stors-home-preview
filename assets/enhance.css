@@ -32,14 +32,6 @@
 .c4 { --cc: var(--c-coral); --cs: var(--c-coral-soft); }
 
 /* ---------- Hero ---------- */
-.sts-hero {
-  isolation: isolate;
-  background:
-    radial-gradient(38vw 30vw at 74% 42%, rgba(47,111,214,.10), transparent 70%),
-    radial-gradient(26vw 20vw at 52% 82%, rgba(18,165,148,.08), transparent 70%),
-    radial-gradient(18vw 14vw at 92% 88%, rgba(232,154,44,.07), transparent 70%),
-    #fefefc !important;
-}
 .sts-hero-title span:last-child {
   background: linear-gradient(90deg, #1f211e 0%, #1f3f6b 45%, var(--c-blue) 75%, var(--c-teal) 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -161,12 +153,6 @@
 .x-reveal.is-in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .x-reveal { opacity: 1; transform: none; transition: none; } }
 
-/* Hero 插画是白底 JPG，正片叠底以融入彩色背景 */
-#hero > div:first-child { mix-blend-mode: multiply; }
-#hero > div:first-child img {
-  -webkit-mask-image: radial-gradient(ellipse 62% 66% at 62% 50%, #000 62%, transparent 100%);
-          mask-image: radial-gradient(ellipse 62% 66% at 62% 50%, #000 62%, transparent 100%);
-}
 
 /* 手机端 */
 @media (max-width: 767px) {
