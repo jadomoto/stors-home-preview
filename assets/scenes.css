@@ -1,0 +1,34 @@
+/* 业务场景配图：沿用原站变量，只补充图片和布局 */
+.sts-scene-fig { margin: 0; }
+.sts-scene-img { overflow: hidden; border-radius: var(--radius-sm); background: var(--page-alt); aspect-ratio: 16 / 9; }
+.sts-scene-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.sts-scene-fig figcaption {
+  margin-top: .75rem; font-size: .6875rem; font-weight: 500; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--text-muted);
+}
+
+/* Process：标题右侧一张图 */
+.sts-scene-process { margin-top: 2.5rem; }
+@media (min-width: 1024px) {
+  #process > .sts-container { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 30rem); column-gap: 4rem; }
+  #process > .sts-container > * { grid-column: 1 / -1; }
+  #process > .sts-container > :first-child { grid-column: 1; grid-row: 1; }
+  #process > .sts-container > .sts-scene-process { grid-column: 2; grid-row: 1; margin-top: 0; align-self: end; }
+}
+
+/* Systems：左侧文字下方一张图 */
+.sts-scene-ecosystem { margin-top: 2.5rem; max-width: 30rem; }
+
+/* Service：维修能力下方两张图 */
+.sts-scene-delivery { display: grid; gap: 1.5rem; max-width: 54rem; margin: 3.5rem auto 0; position: relative; z-index: 2; }
+@media (min-width: 768px) {
+  .sts-scene-delivery { grid-template-columns: 1fr 1fr; }
+}
+
+/* What we cover：标题与四列之间一张横图 */
+.sts-scene-clients { margin-top: 2.5rem; }
+.sts-scene-clients .sts-scene-img { aspect-ratio: 16 / 9; }
+.sts-scene-clients .sts-scene-img img { object-position: 60% 28%; }
+@media (min-width: 768px) {
+  .sts-scene-clients .sts-scene-img { aspect-ratio: 3 / 1; }
+}

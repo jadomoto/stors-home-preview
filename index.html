@@ -99,4 +99,42 @@
   new MutationObserver(ensure).observe(document.documentElement, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['lang'] });
   window.addEventListener('load', function () { setTimeout(ensure, 0); });
 })();
+</script><script>
+(function () {
+  var GROUPS = [{"key": "process", "target": "#process > .sts-container > :first-child", "where": "after", "cls": "sts-scene-process", "sizes": "(min-width: 1024px) 30rem, 100vw", "imgs": [["scene-testing", "Hardware Testing", "硬件测试", "GPU cards and a server on a hardware testing bench"]]}, {"key": "ecosystem", "target": "#ecosystem .sts-infra-copy", "where": "append", "cls": "sts-scene-ecosystem", "sizes": "(min-width: 1024px) 30rem, 100vw", "imgs": [["scene-datacenter", "Data Center Deployment", "数据中心部署", "Server racks in a data center aisle"]]}, {"key": "delivery", "target": "#delivery > .sts-container", "where": "append", "cls": "sts-scene-delivery", "sizes": "(min-width: 768px) 27rem, 100vw", "imgs": [["scene-repair", "Repair & Testing", "维修检测", "Engineer testing a GPU board with a multimeter"], ["scene-assembly", "Server Assembly", "服务器装配", "Technician installing memory modules in a server"]]}, {"key": "clients", "target": "#clients > .sts-container > :first-child", "where": "after", "cls": "sts-scene-clients", "sizes": "100vw", "imgs": [["scene-dispatch", "Packing & Dispatch", "包装发货", "Packing components for shipment in a warehouse"]]}], IMG = "/stors-home-preview/assets/scenes", CSS = "/stors-home-preview/assets/scenes.css";
+  function lang() { return (document.documentElement.lang || '').indexOf('zh') === 0 ? 'zh' : 'en'; }
+  function hydrated(el) { return el && Object.keys(el).some(function (k) { return k.indexOf('__reactFiber') === 0; }); }
+  function fig(g, im) {
+    return '<figure class="sts-scene-fig"><div class="sts-scene-img"><img src="' + IMG + '/' + im[0] + '-960.webp" srcset="' +
+      IMG + '/' + im[0] + '-960.webp 960w, ' + IMG + '/' + im[0] + '-1600.webp 1600w" sizes="' + g.sizes +
+      '" width="1600" height="900" loading="lazy" decoding="async" alt="' + im[3] + '"/></div>' +
+      '<figcaption data-en="' + im[1] + '" data-zh="' + im[2] + '"></figcaption></figure>';
+  }
+  function ensure() {
+    var l = lang();
+    GROUPS.forEach(function (g) {
+      var box = document.querySelector('[data-sts-scene="' + g.key + '"]');
+      if (!box) {
+        var t = document.querySelector(g.target);
+        if (!hydrated(t)) return;
+        if (!document.querySelector('link[data-sts-scenes]')) {
+          var link = document.createElement('link');
+          link.rel = 'stylesheet'; link.href = CSS; link.setAttribute('data-sts-scenes', '');
+          document.head.appendChild(link);
+        }
+        box = document.createElement('div');
+        box.className = g.cls;
+        box.setAttribute('data-sts-scene', g.key);
+        box.innerHTML = g.imgs.map(function (im) { return fig(g, im); }).join('');
+        if (g.where === 'after') t.parentNode.insertBefore(box, t.nextSibling); else t.appendChild(box);
+      }
+      box.querySelectorAll('figcaption').forEach(function (c) {
+        var txt = c.getAttribute('data-' + l);
+        if (c.textContent !== txt) c.textContent = txt;
+      });
+    });
+  }
+  new MutationObserver(ensure).observe(document.documentElement, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['lang'] });
+  window.addEventListener('load', function () { setTimeout(ensure, 0); });
+})();
 </script></body></html>
