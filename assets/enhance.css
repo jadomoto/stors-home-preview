@@ -132,7 +132,7 @@
 @media (min-width: 1024px) { .x-office-head { grid-template-columns: 1fr minmax(0, 28rem); } }
 .x-office-grid { display: grid; gap: 1rem; margin-top: 3rem; }
 @media (min-width: 768px) {
-  .x-office-grid { grid-template-columns: 1.35fr 1fr 1fr; grid-template-rows: 15rem 15rem; }
+  .x-office-grid { grid-template-columns: 1.35fr 1fr 1fr; grid-template-rows: minmax(15rem, auto) minmax(15rem, auto); }
   .x-office-grid .x-big { grid-row: span 2; }
 }
 .x-office-grid .x-photo { min-height: 13rem; }
@@ -142,7 +142,7 @@
   display: flex; flex-direction: column; justify-content: space-between;
 }
 .x-office-info h3 { font-size: 1.05rem; font-weight: 500; letter-spacing: -.01em; color: #fff; }
-.x-office-info dl { margin-top: 1rem; display: grid; gap: .7rem; font-size: 13.5px; }
+.x-office-info dl { margin-top: .8rem; display: grid; gap: .5rem; font-size: 13.5px; }
 .x-office-info dt { font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: #9cc3ff; }
 .x-office-info dd { margin: .15rem 0 0; color: #fff; }
 .x-office-info a.x-cta { margin-top: 1.25rem; display: inline-flex; gap: .5rem; align-items: center; font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; color: #fff; }
