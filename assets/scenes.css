@@ -47,7 +47,11 @@
 
 /* C：细窄品牌蓝条，只放产品品类 */
 .sts-accent--c { background: #3d5a73; color: #fff; }
-.sts-accent-cats { list-style: none; margin: 0; padding: 1.6rem 0; display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem 0; }
-.sts-accent-cats li { font-size: .8125rem; letter-spacing: .22em; text-transform: uppercase; white-space: nowrap; }
-.sts-accent-cats li + li::before { content: ""; display: inline-block; width: 4px; height: 4px; background: #79b0ff; margin: 0 1.4rem; vertical-align: middle; }
-@media (min-width: 768px) { .sts-accent-cats { padding: 2.4rem 0; justify-content: space-between; } .sts-accent-cats li + li::before { margin: 0 1.4rem 0 0; } }
+/* 手机端三列两行、不加分隔点；平板以上一行排开，品类之间用蓝色小方点分隔 */
+.sts-accent-cats { list-style: none; margin: 0; padding: 1.6rem 0; display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; gap: .9rem 1rem; }
+.sts-accent-cats li { font-size: .75rem; letter-spacing: .18em; text-transform: uppercase; white-space: nowrap; }
+@media (min-width: 768px) {
+  .sts-accent-cats { display: flex; padding: 2.4rem 0; }
+  .sts-accent-cats li { font-size: .8125rem; letter-spacing: .22em; }
+  .sts-accent-cats li + li::before { content: ""; display: inline-block; width: 4px; height: 4px; background: #79b0ff; margin: 0 1.4rem 0 0; vertical-align: middle; }
+}
