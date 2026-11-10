@@ -49,4 +49,54 @@
   new MutationObserver(ensure).observe(document.documentElement, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['lang'] });
   window.addEventListener('load', function () { setTimeout(ensure, 0); });
 })();
+</script><script>
+(function () {
+  var COPY = {"en": {"label": "OUR OFFICE", "title": "Our Office in Shenzhen", "body": "Our office is located at Kexing Science Park in Nanshan District, Shenzhen, where our team handles product inquiries, model confirmation and service follow-up.", "addrK": "Address", "addr": "Room 3601, Unit 1, Building D, Kexing Science Park, Yuehai Subdistrict, Nanshan District, Shenzhen, Guangdong, China", "cap": ["Reception", "Workspace", "Meeting Room"]}, "zh": {"label": "办公环境", "title": "深圳办公室", "body": "司拓斯智算办公室位于深圳市南山区科兴科学园，团队在这里处理产品咨询、型号确认与服务跟进。", "addrK": "地址", "addr": "深圳市南山区粤海街道科兴科学园D栋1单元3601", "cap": ["前台", "办公区", "会议室"]}}, PHOTOS = [["office-reception", "Reception area of the STORS office"], ["office-workspace", "Open workspace in the STORS office"], ["office-meeting", "Meeting room in the STORS office"]], IMG = "/stors-home-preview/assets/office";
+  function lang() { return (document.documentElement.lang || '').indexOf('zh') === 0 ? 'zh' : 'en'; }
+  function hydrated(el) { return el && Object.keys(el).some(function (k) { return k.indexOf('__reactFiber') === 0; }); }
+  function fig(i, big) {
+    var p = PHOTOS[i][0];
+    return '<figure class="sts-office-fig' + (big ? ' sts-office-fig--lg' : '') + '">' +
+      '<div class="sts-office-img"><img src="' + IMG + '/' + p + '-960.webp" srcset="' + IMG + '/' + p + '-960.webp 960w, ' +
+      IMG + '/' + p + '-1600.webp 1600w" sizes="' + (big ? '(min-width: 1024px) 60vw, 100vw' : '(min-width: 1024px) 34vw, 100vw') +
+      '" width="1600" height="1000" loading="lazy" decoding="async" alt="' + PHOTOS[i][1] + '"/></div>' +
+      '<figcaption data-k="cap' + i + '"></figcaption></figure>';
+  }
+  function build() {
+    var s = document.createElement('section');
+    s.id = 'office';
+    s.className = 'sts-bg-white relative scroll-mt-24';
+    s.setAttribute('data-sts-office', '');
+    s.innerHTML = '<div class="sts-container sts-section">' +
+      '<div class="sts-office-head"><div><p class="sts-label" data-k="label"></p>' +
+      '<div class="sts-divider-accent mt-5 max-w-[12rem]"></div>' +
+      '<h2 class="sts-h2 mt-5 max-w-[14ch]" data-k="title"></h2></div>' +
+      '<div class="sts-office-intro"><p class="sts-body" data-k="body"></p>' +
+      '<p class="sts-office-addr"><span class="sts-inq-contact-k" data-k="addrK"></span><span data-k="addr"></span></p></div></div>' +
+      '<div class="sts-office-grid">' + fig(0, true) + '<div class="sts-office-side">' + fig(1) + fig(2) + '</div></div></div>';
+    return s;
+  }
+  function ensure() {
+    var about = document.getElementById('about');
+    if (!hydrated(about)) return;
+    var s = document.getElementById('office');
+    if (!s) {
+      if (!document.querySelector('link[data-sts-office]')) {
+        var l = document.createElement('link');
+        l.rel = 'stylesheet'; l.href = "/stors-home-preview/assets/office.css"; l.setAttribute('data-sts-office', '');
+        document.head.appendChild(l);
+      }
+      s = build();
+      about.parentNode.insertBefore(s, about.nextSibling);
+    }
+    var c = COPY[lang()];
+    s.querySelectorAll('[data-k]').forEach(function (el) {
+      var k = el.getAttribute('data-k');
+      var t = k.indexOf('cap') === 0 ? c.cap[+k.slice(3)] : c[k];
+      if (el.textContent !== t) el.textContent = t;
+    });
+  }
+  new MutationObserver(ensure).observe(document.documentElement, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['lang'] });
+  window.addEventListener('load', function () { setTimeout(ensure, 0); });
+})();
 </script></body></html>

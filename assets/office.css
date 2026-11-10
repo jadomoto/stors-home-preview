@@ -1,0 +1,25 @@
+/* Office 办公环境模块：沿用原站变量与排版类，只补充图片布局 */
+.sts-office-head { display: grid; gap: 2rem; }
+.sts-office-intro { max-width: 34rem; }
+.sts-office-addr { margin-top: 1.25rem; font-size: .875rem; line-height: 1.6; color: var(--text-h1); }
+
+.sts-office-grid { display: grid; gap: 1.5rem; margin-top: 3.5rem; }
+.sts-office-side { display: grid; gap: 1.5rem; }
+.sts-office-fig { margin: 0; display: flex; flex-direction: column; }
+.sts-office-img { overflow: hidden; border-radius: var(--radius-sm); background: var(--page-alt); aspect-ratio: 16 / 10; }
+.sts-office-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.sts-office-fig figcaption {
+  margin-top: .75rem; font-size: .6875rem; font-weight: 500; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--text-muted);
+}
+
+@media (min-width: 768px) {
+  .sts-office-side { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 1024px) {
+  .sts-office-head { grid-template-columns: 1fr minmax(0, 34rem); align-items: end; gap: 4rem; }
+  .sts-office-grid { grid-template-columns: minmax(0, 1.62fr) minmax(0, 1fr); margin-top: 4rem; }
+  .sts-office-side { grid-template-columns: 1fr; }
+  .sts-office-side .sts-office-img { aspect-ratio: 16 / 9; }
+  .sts-office-fig--lg .sts-office-img { aspect-ratio: auto; flex: 1; min-height: 0; }
+}
