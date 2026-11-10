@@ -42,16 +42,19 @@
   .sts-band--dispatch .sts-scene-fig { height: clamp(20rem, 28vw, 28rem); }
 }
 
-/* 页面中段色带：在 Product Range 与 Hardware Repair 之间换一次底色，打破整页米白；品牌蓝细条，只放产品品类 */
+/* 页面中段色带：在 Product Range 与 Hardware Repair 之间换一次底色，打破整页米白 */
 .sts-accent { position: relative; overflow: hidden; }
 
-/* C：细窄品牌蓝条，只放产品品类 */
-.sts-accent--c { background: #3d5a73; color: #fff; }
-/* 手机端三列两行、不加分隔点；平板以上一行排开，品类之间用蓝色小方点分隔 */
-.sts-accent-cats { list-style: none; margin: 0; padding: 1.6rem 0; display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; gap: .9rem 1rem; }
-.sts-accent-cats li { font-size: .75rem; letter-spacing: .18em; text-transform: uppercase; white-space: nowrap; }
-@media (min-width: 768px) {
-  .sts-accent-cats { display: flex; padding: 2.4rem 0; }
-  .sts-accent-cats li { font-size: .8125rem; letter-spacing: .22em; }
-  .sts-accent-cats li + li::before { content: ""; display: inline-block; width: 4px; height: 4px; background: #79b0ff; margin: 0 1.4rem 0 0; vertical-align: middle; }
-}
+/* 方案 A：品牌深蓝色带 + 一句话 + 四步流程（文案待确认） */
+.sts-accent-label { margin: 0; font-size: .6875rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; }
+.sts-accent-title { margin: 1.1rem 0 0; font-family: var(--font-display); font-weight: 500; letter-spacing: -.02em; line-height: 1.15; font-size: clamp(1.6rem, 3vw, 2.6rem); max-width: 22ch; }
+
+.sts-accent--a { background: linear-gradient(120deg, #3d5a73 0%, #324a60 100%); color: #fff; }
+.sts-accent--a::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: linear-gradient(#ffffff0d 1px, transparent 1px), linear-gradient(90deg, #ffffff0d 1px, transparent 1px); background-size: 48px 48px; }
+.sts-accent--a .sts-accent-in { padding-block: 4.5rem; }
+.sts-accent--a .sts-accent-label { color: #b9cad8; }
+.sts-accent-steps { list-style: none; margin: 2.75rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem 2rem; }
+.sts-accent-steps li { border-top: 1px solid #ffffff40; padding-top: .9rem; font-size: .9375rem; letter-spacing: .04em; }
+.sts-accent-steps .n { display: block; font-size: .6875rem; letter-spacing: .2em; color: #b9cad8; margin-bottom: .35rem; }
+@media (min-width: 768px) { .sts-accent-steps { grid-template-columns: repeat(4, 1fr); } .sts-accent--a .sts-accent-in { padding-block: 6rem; } }
