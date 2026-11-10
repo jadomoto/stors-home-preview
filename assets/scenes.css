@@ -41,3 +41,8 @@
 @media (min-width: 768px) {
   .sts-band--dispatch .sts-scene-fig { height: clamp(20rem, 28vw, 28rem); }
 }
+
+/* 浅色产品图：不加暗角和说明文字，画面留白；保持右侧产品主体可见 */
+.sts-band--light .sts-scene-fig::after { display: none; }
+.sts-band--light figcaption { display: none; }
+.sts-band--light .sts-scene-fig img { object-position: 70% 50%; }
