@@ -164,22 +164,16 @@
   function ensure() {
     var head = document.querySelector('#products .sts-supply-header');
     var inquiry = document.getElementById('inquiry');
-    if (!hydrated(head) || !hydrated(inquiry)) return;
+    if (!hydrated(inquiry)) return;
     if (!document.querySelector('link[data-sts-nav]')) {
       var l = document.createElement('link');
       l.rel = 'stylesheet'; l.href = CSS; l.setAttribute('data-sts-nav', '');
       document.head.appendChild(l);
     }
-    if (!head.querySelector('[data-sts-products-entry]')) {
-      var w = document.createElement('div');
-      w.setAttribute('data-sts-products-entry', '');
-      // 产品列表页已建成：View All Products 改为可点击链接
-      w.innerHTML = '<div class="sts-entry"><a class="sts-link-arrow" href="' + PRODUCTS_URL + '"><span data-k="productsLink"></span><span aria-hidden="true">→</span></a></div>';
-      head.appendChild(w);
-    }
+    // 原站 Products 模块已由产品目录模块替代（见 stage5），不再在其中插入入口
     if (!document.getElementById('careers')) inquiry.parentNode.insertBefore(careers(), inquiry);
     var c = COPY[lang()];
-    document.querySelectorAll('#careers [data-k], [data-sts-products-entry] [data-k]').forEach(function (el) {
+    document.querySelectorAll('#careers [data-k]').forEach(function (el) {
       var t = c[el.getAttribute('data-k')];
       if (el.textContent !== t) el.textContent = t;
     });
@@ -205,16 +199,27 @@
   function lang() { return (document.documentElement.lang || '').indexOf('zh') === 0 ? 'zh' : 'en'; }
   function hydrated(el) { return el && Object.keys(el).some(function (k) { return k.indexOf('__reactFiber') === 0; }); }
   function ensure() {
-    var products = document.getElementById('products');
-    if (!hydrated(products)) return;
+    // 原站 Products 模块由本模块替代：隐藏原模块并让出 id，导航 Products / 页脚 Products 指向本模块
+    var legacy = document.querySelector('section[data-sts-legacy]') || document.getElementById('products');
+    if (!hydrated(legacy)) return;
+    if (!legacy.hasAttribute('data-sts-legacy')) {
+      legacy.setAttribute('data-sts-legacy', ''); legacy.id = 'products-legacy'; legacy.style.display = 'none'; legacy.setAttribute('aria-hidden', 'true');
+    }
     if (!document.querySelector('link[data-sts-catalog]')) {
       var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = CSS; l.setAttribute('data-sts-catalog', '');
       document.head.appendChild(l);
     }
-    var s = document.getElementById('catalog');
+    var s = document.querySelector('section[data-sts-catalog]');
     if (!s) {
-      s = document.createElement('section'); s.id = 'catalog'; s.className = 'sts-bg-page relative scroll-mt-24'; s.innerHTML = HTML;
-      products.parentNode.insertBefore(s, products.nextSibling);
+      s = document.createElement('section'); s.id = 'products'; s.setAttribute('data-sts-catalog', '');
+      s.className = 'sts-bg-white relative scroll-mt-24'; s.innerHTML = HTML;
+      legacy.parentNode.insertBefore(s, legacy.nextSibling);
+      if (location.hash === '#products') {
+        var stop = false;
+        ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (ev) { addEventListener(ev, function () { stop = true; }, { once: true, passive: true }); });
+        var go = function () { if (!stop) s.scrollIntoView({ block: 'start', behavior: 'instant' }); };
+        requestAnimationFrame(go); [300, 800, 1500, 2500].forEach(function (ms) { setTimeout(go, ms); });
+      }
     }
     var l2 = lang();
     s.querySelectorAll('[data-en]').forEach(function (el) { var v = el.getAttribute('data-' + l2); if (el.textContent !== v) el.textContent = v; });
