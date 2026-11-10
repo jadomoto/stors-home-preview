@@ -37,10 +37,6 @@
   .sts-band--wide .sts-scene-fig { aspect-ratio: auto; height: clamp(22rem, 33vw, 32rem); }
 }
 .sts-band--wide .sts-scene-fig img { object-position: 50% 50%; }
-.sts-band--dispatch .sts-scene-fig img { object-position: 62% 40%; }
-@media (min-width: 768px) {
-  .sts-band--dispatch .sts-scene-fig { height: clamp(20rem, 28vw, 28rem); }
-}
 
 /* 页面中段色带：在 Product Range 与 Hardware Repair 之间换一次底色，打破整页米白 */
 .sts-accent { position: relative; overflow: hidden; }
