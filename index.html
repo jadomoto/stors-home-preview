@@ -187,8 +187,11 @@
       hashDone = true;
       var id = decodeURIComponent(location.hash.slice(1));
       if (HASH_IDS.indexOf(id) >= 0) {
-        var go = function () { var t = document.getElementById(id); if (t) t.scrollIntoView({ block: 'start' }); };
-        requestAnimationFrame(go); setTimeout(go, 400);
+        // 原站 html 开启了平滑滚动，且加载过程中页面高度会变化：这里用立即定位，并在页面稳定前多次校正；用户自行滚动后停止
+        var stop = false;
+        ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (ev) { addEventListener(ev, function () { stop = true; }, { once: true, passive: true }); });
+        var go = function () { if (stop) return; var t = document.getElementById(id); if (t) t.scrollIntoView({ block: 'start', behavior: 'instant' }); };
+        requestAnimationFrame(go); [300, 800, 1500, 2500].forEach(function (ms) { setTimeout(go, ms); });
       }
     }
   }
