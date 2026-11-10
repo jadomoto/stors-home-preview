@@ -1,34 +1,67 @@
-/* 业务场景配图：沿用原站变量，只补充图片和布局 */
+/* 业务场景配图：沿用原站变量，只调整图片尺度与图文关系。每处采用不同的排版方式 */
 .sts-scene-fig { margin: 0; }
-.sts-scene-img { overflow: hidden; border-radius: var(--radius-sm); background: var(--page-alt); aspect-ratio: 16 / 9; }
+.sts-scene-img { overflow: hidden; border-radius: var(--radius-sm); background: var(--page-alt); aspect-ratio: 16 / 10; }
 .sts-scene-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .sts-scene-fig figcaption {
   margin-top: .75rem; font-size: .6875rem; font-weight: 500; letter-spacing: .14em;
   text-transform: uppercase; color: var(--text-muted);
 }
 
-/* Process：标题右侧一张图 */
+/* ---------- Process · GPU 测试：非对称，文字 5 : 图片 7，图片右侧延伸到页面边缘 ---------- */
 .sts-scene-process { margin-top: 2.5rem; }
+.sts-scene-process .sts-scene-img img { object-position: 55% 60%; }
 @media (min-width: 1024px) {
-  #process > .sts-container { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 30rem); column-gap: 4rem; }
+  #process > .sts-container { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: 4.5rem; }
   #process > .sts-container > * { grid-column: 1 / -1; }
-  #process > .sts-container > :first-child { grid-column: 1; grid-row: 1; }
-  #process > .sts-container > .sts-scene-process { grid-column: 2; grid-row: 1; margin-top: 0; align-self: end; }
+  #process > .sts-container > :first-child { grid-column: 1; grid-row: 1; align-self: center; }
+  #process > .sts-container > .sts-scene-process { grid-column: 2; grid-row: 1; margin-top: 0; margin-right: -2rem; }
+  .sts-scene-process .sts-scene-img { aspect-ratio: 3 / 2; border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
 }
+@media (min-width: 1280px) { #process > .sts-container > .sts-scene-process { margin-right: -2.75rem; } }
+@media (min-width: 1536px) { #process > .sts-container > .sts-scene-process { margin-right: -3rem; } }
 
-/* Systems：左侧文字下方一张图 */
-.sts-scene-ecosystem { margin-top: 2.5rem; max-width: 30rem; }
-
-/* Service：维修能力下方两张图 */
-.sts-scene-delivery { display: grid; gap: 1.5rem; max-width: 54rem; margin: 3.5rem auto 0; position: relative; z-index: 2; }
+/* ---------- Systems · 数据中心：模块底部全宽横幅，过渡到 Service ---------- */
+.sts-scene-ecosystem { margin-top: 3.5rem; }
+.sts-scene-ecosystem .sts-scene-img img { object-position: 50% 45%; }
 @media (min-width: 768px) {
-  .sts-scene-delivery { grid-template-columns: 1fr 1fr; }
+  .sts-scene-ecosystem { margin-top: 5rem; }
+  .sts-scene-ecosystem .sts-scene-img { aspect-ratio: 21 / 8; }
 }
 
-/* What we cover：标题与四列之间一张横图 */
+/* ---------- Service · 维修检测：大图与三项维修能力并排 ---------- */
+.sts-scene-repair { margin-top: 3rem; }
+.sts-scene-repair .sts-scene-img { aspect-ratio: 4 / 3; }
+.sts-scene-repair .sts-scene-img img { object-position: 62% 50%; }
+@media (min-width: 1024px) {
+  #delivery .sts-container > div:has(> .sts-dep-caps) {
+    display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: 4.5rem; align-items: center; margin-top: 4rem;
+  }
+  #delivery .sts-scene-repair { margin-top: 0; }
+  #delivery div:has(> .sts-scene-repair) > .sts-dep-caps { grid-template-columns: 1fr; max-width: none; margin: 0; }
+  #delivery div:has(> .sts-scene-repair) > .sts-dep-caps li {
+    border-right: none; border-bottom: 1px solid #1414120f; padding: 1.75rem 0 1.5rem;
+  }
+  #delivery div:has(> .sts-scene-repair) > .sts-dep-caps li:not(:first-child) { padding-left: 0; }
+  #delivery div:has(> .sts-scene-repair) > .sts-dep-caps li:last-child { border-bottom: none; }
+}
+
+/* ---------- Service · 服务器组装：宽幅横图，靠右约 83% 宽，与上方左图错落 ---------- */
+.sts-scene-assembly { margin-top: 3rem; position: relative; z-index: 2; }
+.sts-scene-assembly .sts-scene-img img { object-position: 50% 55%; }
+@media (min-width: 768px) {
+  .sts-scene-assembly .sts-scene-img { aspect-ratio: 12 / 5; }
+}
+@media (min-width: 1024px) {
+  .sts-scene-assembly { margin-top: 4.5rem; margin-left: auto; width: 83.3333%; }
+}
+
+/* ---------- What we cover · 仓储物流：图片在左，标题在右，四列内容在下 ---------- */
 .sts-scene-clients { margin-top: 2.5rem; }
-.sts-scene-clients .sts-scene-img { aspect-ratio: 16 / 9; }
-.sts-scene-clients .sts-scene-img img { object-position: 60% 28%; }
-@media (min-width: 768px) {
-  .sts-scene-clients .sts-scene-img { aspect-ratio: 3 / 1; }
+.sts-scene-clients .sts-scene-img img { object-position: 62% 35%; }
+@media (min-width: 1024px) {
+  #clients > .sts-container { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: 4.5rem; }
+  #clients > .sts-container > * { grid-column: 1 / -1; }
+  #clients > .sts-container > :first-child { grid-column: 2; grid-row: 1; align-self: end; padding-bottom: 2.25rem; }
+  #clients > .sts-container > .sts-scene-clients { grid-column: 1; grid-row: 1; margin-top: 0; }
+  .sts-scene-clients .sts-scene-img { aspect-ratio: 3 / 2; }
 }

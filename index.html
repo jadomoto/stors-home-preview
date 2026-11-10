@@ -101,7 +101,7 @@
 })();
 </script><script>
 (function () {
-  var GROUPS = [{"key": "process", "target": "#process > .sts-container > :first-child", "where": "after", "cls": "sts-scene-process", "sizes": "(min-width: 1024px) 30rem, 100vw", "imgs": [["scene-testing", "Hardware Testing", "硬件测试", "GPU cards and a server on a hardware testing bench"]]}, {"key": "ecosystem", "target": "#ecosystem .sts-infra-copy", "where": "append", "cls": "sts-scene-ecosystem", "sizes": "(min-width: 1024px) 30rem, 100vw", "imgs": [["scene-datacenter", "Data Center Deployment", "数据中心部署", "Server racks in a data center aisle"]]}, {"key": "delivery", "target": "#delivery > .sts-container", "where": "append", "cls": "sts-scene-delivery", "sizes": "(min-width: 768px) 27rem, 100vw", "imgs": [["scene-repair", "Repair & Testing", "维修检测", "Engineer testing a GPU board with a multimeter"], ["scene-assembly", "Server Assembly", "服务器装配", "Technician installing memory modules in a server"]]}, {"key": "clients", "target": "#clients > .sts-container > :first-child", "where": "after", "cls": "sts-scene-clients", "sizes": "100vw", "imgs": [["scene-dispatch", "Packing & Dispatch", "包装发货", "Packing components for shipment in a warehouse"]]}], IMG = "/stors-home-preview/assets/scenes", CSS = "/stors-home-preview/assets/scenes.css";
+  var GROUPS = [{"key": "process", "target": "#process > .sts-container > :first-child", "where": "after", "cls": "sts-scene-process", "sizes": "(min-width: 1024px) 58vw, 100vw", "imgs": [["scene-testing", "Hardware Testing", "硬件测试", "GPU cards and a server on a hardware testing bench"]]}, {"key": "ecosystem", "target": "#ecosystem .sts-infra-layout", "where": "after", "cls": "sts-scene-ecosystem", "sizes": "100vw", "imgs": [["scene-datacenter", "Data Center Deployment", "数据中心部署", "Server racks in a data center aisle"]]}, {"key": "repair", "target": "#delivery .sts-dep-caps", "where": "before", "cls": "sts-scene-repair", "sizes": "(min-width: 1024px) 55vw, 100vw", "imgs": [["scene-repair", "Repair & Testing", "维修检测", "Engineer testing a GPU board with a multimeter"]]}, {"key": "assembly", "target": "#delivery > .sts-container", "where": "append", "cls": "sts-scene-assembly", "sizes": "(min-width: 1024px) 80vw, 100vw", "imgs": [["scene-assembly", "Server Assembly", "服务器装配", "Technician installing memory modules in a server"]]}, {"key": "clients", "target": "#clients > .sts-container > :first-child", "where": "after", "cls": "sts-scene-clients", "sizes": "(min-width: 1024px) 55vw, 100vw", "imgs": [["scene-dispatch", "Packing & Dispatch", "包装发货", "Packing components for shipment in a warehouse"]]}], IMG = "/stors-home-preview/assets/scenes", CSS = "/stors-home-preview/assets/scenes.css";
   function lang() { return (document.documentElement.lang || '').indexOf('zh') === 0 ? 'zh' : 'en'; }
   function hydrated(el) { return el && Object.keys(el).some(function (k) { return k.indexOf('__reactFiber') === 0; }); }
   function fig(g, im) {
@@ -126,7 +126,7 @@
         box.className = g.cls;
         box.setAttribute('data-sts-scene', g.key);
         box.innerHTML = g.imgs.map(function (im) { return fig(g, im); }).join('');
-        if (g.where === 'after') t.parentNode.insertBefore(box, t.nextSibling); else t.appendChild(box);
+        if (g.where === 'after') t.parentNode.insertBefore(box, t.nextSibling); else if (g.where === 'before') t.parentNode.insertBefore(box, t); else t.appendChild(box);
       }
       box.querySelectorAll('figcaption').forEach(function (c) {
         var txt = c.getAttribute('data-' + l);
