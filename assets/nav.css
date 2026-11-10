@@ -1,0 +1,29 @@
+/* 导航与入口阶段：Careers 模块、Products / Careers 待开放链接。沿用原站变量与排版类 */
+
+/* 待开放链接：与 sts-link-arrow 同字号，降为弱化色，不可点击 */
+.sts-entry { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin-top: 1.75rem; }
+.sts-link-arrow.sts-link-pending { color: var(--text-muted); cursor: default; }
+.sts-link-arrow.sts-link-pending:hover { color: var(--text-muted); gap: .4rem; }
+.sts-pending-tag {
+  display: inline-flex; align-items: center; padding: .2rem .55rem; border: 1px solid var(--border-mid);
+  border-radius: var(--radius-pill); font-size: .625rem; font-weight: 500; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--text-muted);
+}
+
+/* Careers 模块 */
+.sts-careers-grid { display: grid; gap: 2.5rem; }
+.sts-careers-sub { margin-top: 1.25rem; font-size: 1.25rem; line-height: 1.4; font-weight: 500; letter-spacing: -.02em; color: var(--text-h1); }
+.sts-careers-fig { margin: 0; }
+.sts-careers-img { overflow: hidden; border-radius: var(--radius-sm); background: var(--page-alt); aspect-ratio: 5 / 4; }
+.sts-careers-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.sts-careers-fig figcaption {
+  margin-top: .75rem; font-size: .6875rem; font-weight: 500; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--text-muted);
+}
+@media (max-width: 767px) {
+  .sts-careers-img { aspect-ratio: 16 / 10; }
+}
+@media (min-width: 1024px) {
+  .sts-careers-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 5rem; align-items: center; }
+  .sts-careers-sub { font-size: 1.5rem; }
+}
