@@ -1,67 +1,43 @@
-/* 业务场景配图：沿用原站变量，只调整图片尺度与图文关系。每处采用不同的排版方式 */
-.sts-scene-fig { margin: 0; }
-.sts-scene-img { overflow: hidden; border-radius: var(--radius-sm); background: var(--page-alt); aspect-ratio: 16 / 10; }
-.sts-scene-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.sts-scene-fig figcaption {
-  margin-top: .75rem; font-size: .6875rem; font-weight: 500; letter-spacing: .14em;
-  text-transform: uppercase; color: var(--text-muted);
+/* 业务场景图 · 方案 B：模块之间的全宽过渡图带，原有模块内部不动 */
+.sts-band { position: relative; display: grid; background: var(--page-white); }
+.sts-band .sts-scene-fig { margin: 0; position: relative; overflow: hidden; }
+.sts-band .sts-scene-img { height: 100%; background: var(--page-alt); }
+.sts-band .sts-scene-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* 说明文字压在图片左下角，底部加一层很淡的暗角保证可读 */
+.sts-band .sts-scene-fig::after {
+  content: ""; position: absolute; inset: auto 0 0 0; height: 30%; pointer-events: none;
+  background: linear-gradient(to top, rgba(20, 20, 18, .38), rgba(20, 20, 18, 0));
 }
-
-/* ---------- Process · GPU 测试：非对称，文字 5 : 图片 7，图片右侧延伸到页面边缘 ---------- */
-.sts-scene-process { margin-top: 2.5rem; }
-.sts-scene-process .sts-scene-img img { object-position: 55% 60%; }
-@media (min-width: 1024px) {
-  #process > .sts-container { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: 4.5rem; }
-  #process > .sts-container > * { grid-column: 1 / -1; }
-  #process > .sts-container > :first-child { grid-column: 1; grid-row: 1; align-self: center; }
-  #process > .sts-container > .sts-scene-process { grid-column: 2; grid-row: 1; margin-top: 0; margin-right: -2rem; }
-  .sts-scene-process .sts-scene-img { aspect-ratio: 3 / 2; border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+.sts-band figcaption {
+  position: absolute; z-index: 1; left: 1.35rem; bottom: 1.1rem; margin: 0;
+  font-size: .6875rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #fff;
 }
-@media (min-width: 1280px) { #process > .sts-container > .sts-scene-process { margin-right: -2.75rem; } }
-@media (min-width: 1536px) { #process > .sts-container > .sts-scene-process { margin-right: -3rem; } }
+@media (min-width: 768px) { .sts-band figcaption { left: 2rem; bottom: 1.4rem; } }
+@media (min-width: 1280px) { .sts-band figcaption { left: 2.75rem; } }
 
-/* ---------- Systems · 数据中心：模块底部全宽横幅，过渡到 Service ---------- */
-.sts-scene-ecosystem { margin-top: 3.5rem; }
-.sts-scene-ecosystem .sts-scene-img img { object-position: 50% 45%; }
+/* Process 之后：三张并排，图间留 4px 白缝 */
+.sts-band--trio { gap: 4px; grid-template-columns: 1fr 1fr; }
+.sts-band--trio .sts-scene-fig:first-child { grid-column: 1 / -1; }
+.sts-band--trio .sts-scene-fig { aspect-ratio: 16 / 10; }
+.sts-band--trio .sts-scene-fig:not(:first-child) { aspect-ratio: 1 / 1; }
+.sts-band--trio .sts-scene-fig:not(:first-child) figcaption { left: .9rem; bottom: .8rem; font-size: .625rem; }
 @media (min-width: 768px) {
-  .sts-scene-ecosystem { margin-top: 5rem; }
-  .sts-scene-ecosystem .sts-scene-img { aspect-ratio: 21 / 8; }
+  .sts-band--trio { grid-template-columns: repeat(3, 1fr); }
+  .sts-band--trio .sts-scene-fig:first-child { grid-column: auto; }
+  .sts-band--trio .sts-scene-fig, .sts-band--trio .sts-scene-fig:not(:first-child) { aspect-ratio: auto; height: clamp(18rem, 26vw, 26rem); }
+  .sts-band--trio .sts-scene-fig:not(:first-child) figcaption { left: 1.4rem; bottom: 1.4rem; font-size: .6875rem; }
 }
+.sts-band--trio .sts-scene-fig:nth-child(1) img { object-position: 45% 60%; }
+.sts-band--trio .sts-scene-fig:nth-child(2) img { object-position: 55% 55%; }
+.sts-band--trio .sts-scene-fig:nth-child(3) img { object-position: 50% 60%; }
 
-/* ---------- Service · 维修检测：大图与三项维修能力并排 ---------- */
-.sts-scene-repair { margin-top: 3rem; }
-.sts-scene-repair .sts-scene-img { aspect-ratio: 4 / 3; }
-.sts-scene-repair .sts-scene-img img { object-position: 62% 50%; }
-@media (min-width: 1024px) {
-  #delivery .sts-container > div:has(> .sts-dep-caps) {
-    display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: 4.5rem; align-items: center; margin-top: 4rem;
-  }
-  #delivery .sts-scene-repair { margin-top: 0; }
-  #delivery div:has(> .sts-scene-repair) > .sts-dep-caps { grid-template-columns: 1fr; max-width: none; margin: 0; }
-  #delivery div:has(> .sts-scene-repair) > .sts-dep-caps li {
-    border-right: none; border-bottom: 1px solid #1414120f; padding: 1.75rem 0 1.5rem;
-  }
-  #delivery div:has(> .sts-scene-repair) > .sts-dep-caps li:not(:first-child) { padding-left: 0; }
-  #delivery div:has(> .sts-scene-repair) > .sts-dep-caps li:last-child { border-bottom: none; }
-}
-
-/* ---------- Service · 服务器组装：宽幅横图，靠右约 83% 宽，与上方左图错落 ---------- */
-.sts-scene-assembly { margin-top: 3rem; position: relative; z-index: 2; }
-.sts-scene-assembly .sts-scene-img img { object-position: 50% 55%; }
+/* Systems 之后、What we cover 之前：单张全宽横幅 */
+.sts-band--wide .sts-scene-fig { aspect-ratio: 16 / 10; }
 @media (min-width: 768px) {
-  .sts-scene-assembly .sts-scene-img { aspect-ratio: 12 / 5; }
+  .sts-band--wide .sts-scene-fig { aspect-ratio: auto; height: clamp(22rem, 33vw, 32rem); }
 }
-@media (min-width: 1024px) {
-  .sts-scene-assembly { margin-top: 4.5rem; margin-left: auto; width: 83.3333%; }
-}
-
-/* ---------- What we cover · 仓储物流：图片在左，标题在右，四列内容在下 ---------- */
-.sts-scene-clients { margin-top: 2.5rem; }
-.sts-scene-clients .sts-scene-img img { object-position: 62% 35%; }
-@media (min-width: 1024px) {
-  #clients > .sts-container { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: 4.5rem; }
-  #clients > .sts-container > * { grid-column: 1 / -1; }
-  #clients > .sts-container > :first-child { grid-column: 2; grid-row: 1; align-self: end; padding-bottom: 2.25rem; }
-  #clients > .sts-container > .sts-scene-clients { grid-column: 1; grid-row: 1; margin-top: 0; }
-  .sts-scene-clients .sts-scene-img { aspect-ratio: 3 / 2; }
+.sts-band--wide .sts-scene-fig img { object-position: 50% 50%; }
+.sts-band--dispatch .sts-scene-fig img { object-position: 62% 40%; }
+@media (min-width: 768px) {
+  .sts-band--dispatch .sts-scene-fig { height: clamp(20rem, 28vw, 28rem); }
 }
