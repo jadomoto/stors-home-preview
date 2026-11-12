@@ -62,3 +62,17 @@
   .sts-ws-grid { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; overflow: visible; margin-inline: 0; padding-inline: 0; }
   .sts-ws-img { aspect-ratio: 16 / 10; }
 }
+
+/* 关于模块顶部品牌大图：满屏产品摄影，左侧压 logo 与一句标语（参考大疆 / 影石品牌页） */
+/* 手机端：文字在上、产品图在下，避免标语压到产品 */
+.sts-ab { position: relative; overflow: hidden; display: flex; flex-direction: column; background: linear-gradient(180deg, #f1f1ef 0%, #e6e8ec 100%); }
+.sts-ab-bg { display: block; order: 2; width: 100%; aspect-ratio: 4 / 3; height: auto; object-fit: cover; object-position: 80% 70%; }
+.sts-ab-in { position: relative; order: 1; display: flex; flex-direction: column; padding-top: 3rem; padding-bottom: .5rem; }
+.sts-ab-logo { width: clamp(7.5rem, 30vw, 12rem); height: auto; }
+.sts-ab-title { margin: 1.4rem 0 0; font-family: var(--font-display); font-weight: 500; letter-spacing: -.03em; line-height: 1.05; font-size: clamp(2rem, 8vw, 4.25rem); color: var(--text-primary, #141412); max-width: 12ch; }
+.sts-ab-sub { margin: 1rem 0 0; font-size: .6875rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--accent, #3d5a73); }
+@media (min-width: 768px) {
+  .sts-ab { display: block; height: clamp(28rem, 42vw, 44rem); background: #e9eaee; }
+  .sts-ab-bg { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; object-position: 70% 50%; }
+  .sts-ab-in { height: 100%; justify-content: center; padding-block: 0; }
+}
