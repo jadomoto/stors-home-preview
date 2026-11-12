@@ -86,3 +86,11 @@ a:hover .sts-cat-img img, .sts-cat-card:hover .sts-cat-img img { transform: scal
 .sts-dx-models a span { color: var(--text-muted); transition: transform .25s; }
 .sts-dx-models a:hover { color: var(--accent); } .sts-dx-models a:hover span { transform: translateX(4px); color: var(--accent); }
 .sts-dx-more { margin-top: auto; padding-top: 1.1rem; font-size: .8125rem; }
+
+/* “查看全部产品”入口：标题区右侧放主按钮，列表底部改为描边按钮，避免滑过时看不到 */
+.sts-cat-intro { display: grid; gap: 1.5rem; justify-items: start; }
+.sts-cat-all { gap: .6rem; }
+.sts-cat-all span[aria-hidden] { transition: transform .3s; }
+.sts-cat-all:hover span[aria-hidden] { transform: translateX(4px); }
+.sts-cat-foot .sts-link-arrow { min-height: 3rem; padding: .75rem 1.5rem; border: 1px solid var(--accent); border-radius: var(--radius-sm); color: var(--accent); font-size: .8125rem; letter-spacing: .06em; text-transform: uppercase; transition: background .3s, color .3s, gap .3s; }
+.sts-cat-foot .sts-link-arrow:hover { background: var(--accent); color: #fafaf8; gap: .7rem; }
