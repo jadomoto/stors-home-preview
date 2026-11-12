@@ -2,7 +2,20 @@
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="robots" content="noindex,nofollow"/>
 <title>All Products | STORS</title><link rel="icon" href="https://stors.jadomoto.com/favicon.ico?favicon.2vob68tjqpejf.ico"/>
 <link rel="stylesheet" href="/stors-home-preview/_next/static/chunks/365ckwhr5l8c0.css"/><link rel="stylesheet" href="/stors-home-preview/assets/catalog.css?v=light1"/>
-</head><body class="flex min-h-full flex-col font-sans"><header class="fixed inset-x-0 top-0 z-50 transition-all duration-300 sts-header-glass">
+<style data-sts-links>
+/* 首页已隐藏 Servers 示意图、Product Range、What we cover，指向它们的导航与页脚链接一并隐藏 */
+a[href$="#solutions"], a[href$="#ecosystem"], a[href$="#clients"] { display: none !important; }
+</style><script data-sts-links>
+(function () {
+  // “关于我们”链接原本指向正式站 /about，改为预览站首页的关于模块
+  var ABOUT = '/stors-home-preview/#about';
+  function fix() {
+    document.querySelectorAll('a[href="https://stors.jadomoto.com/about"]').forEach(function (a) { a.setAttribute('href', ABOUT); });
+  }
+  new MutationObserver(fix).observe(document.documentElement, { subtree: true, childList: true, attributes: true, attributeFilter: ['href'] });
+  window.addEventListener('load', function () { setTimeout(fix, 0); });
+})();
+</script></head><body class="flex min-h-full flex-col font-sans"><header class="fixed inset-x-0 top-0 z-50 transition-all duration-300 sts-header-glass">
 <div class="sts-container flex h-[68px] items-center justify-between md:h-[72px]">
 <a class="flex items-center gap-2" href="/stors-home-preview/"><img src="/stors-home-preview/brand/sts-logo.svg" alt="STS STORS" width="88" height="28" class="brightness-0"/><span class="sr-only">STORS</span></a>
 <nav class="hidden items-center gap-0.5 lg:flex xl:gap-1"><a class="rounded px-2.5 py-1.5 text-[11px] font-medium tracking-[0.12em] uppercase transition xl:px-3 xl:text-[12px] text-[var(--text-muted)] hover:text-[var(--text-h1)]" href="/stors-home-preview/#hero"><span data-en="Home" data-zh="首页">Home</span></a><a class="rounded px-2.5 py-1.5 text-[11px] font-medium tracking-[0.12em] uppercase transition xl:px-3 xl:text-[12px] text-[var(--text-h1)]" href="/stors-home-preview/#products"><span data-en="Products" data-zh="产品中心">Products</span></a><a class="rounded px-2.5 py-1.5 text-[11px] font-medium tracking-[0.12em] uppercase transition xl:px-3 xl:text-[12px] text-[var(--text-muted)] hover:text-[var(--text-h1)]" href="/stors-home-preview/#solutions"><span data-en="Servers" data-zh="服务器">Servers</span></a><a class="rounded px-2.5 py-1.5 text-[11px] font-medium tracking-[0.12em] uppercase transition xl:px-3 xl:text-[12px] text-[var(--text-muted)] hover:text-[var(--text-h1)]" href="/stors-home-preview/#process"><span data-en="Process" data-zh="流程">Process</span></a><a class="rounded px-2.5 py-1.5 text-[11px] font-medium tracking-[0.12em] uppercase transition xl:px-3 xl:text-[12px] text-[var(--text-muted)] hover:text-[var(--text-h1)]" href="/stors-home-preview/#ecosystem"><span data-en="Systems" data-zh="系统">Systems</span></a><a class="rounded px-2.5 py-1.5 text-[11px] font-medium tracking-[0.12em] uppercase transition xl:px-3 xl:text-[12px] text-[var(--text-muted)] hover:text-[var(--text-h1)]" href="/stors-home-preview/#delivery"><span data-en="Service" data-zh="维修维保">Service</span></a><a class="rounded px-2.5 py-1.5 text-[11px] font-medium tracking-[0.12em] uppercase transition xl:px-3 xl:text-[12px] text-[var(--text-muted)] hover:text-[var(--text-h1)]" href="/stors-home-preview/#careers"><span data-en="Careers" data-zh="加入我们">Careers</span></a><a class="rounded px-2.5 py-1.5 text-[11px] font-medium tracking-[0.12em] uppercase transition xl:px-3 xl:text-[12px] text-[var(--text-muted)] hover:text-[var(--text-h1)]" href="/stors-home-preview/#inquiry"><span data-en="Contact" data-zh="联系我们">Contact</span></a></nav>
