@@ -3,7 +3,7 @@
 @media (min-width: 1024px) { .sts-cat-head { grid-template-columns: 1fr minmax(0, 30rem); align-items: end; gap: 4rem; } }
 
 /* 产品主图：统一深色画布 4:3 */
-.sts-cat-img { overflow: hidden; border-radius: var(--radius-sm); background: #121211; aspect-ratio: 4 / 3; }
+.sts-cat-img { overflow: hidden; border-radius: var(--radius-sm); background: #ecece7; aspect-ratio: 4 / 3; }
 .sts-cat-img img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
 a:hover .sts-cat-img img, .sts-cat-card:hover .sts-cat-img img { transform: scale(1.03); }
 
