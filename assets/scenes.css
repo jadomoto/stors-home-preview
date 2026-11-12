@@ -15,22 +15,6 @@
 @media (min-width: 768px) { .sts-band figcaption { left: 2rem; bottom: 1.4rem; } }
 @media (min-width: 1280px) { .sts-band figcaption { left: 2.75rem; } }
 
-/* Process 之后：三张并排，图间留 4px 白缝 */
-.sts-band--trio { gap: 4px; grid-template-columns: 1fr 1fr; }
-.sts-band--trio .sts-scene-fig:first-child { grid-column: 1 / -1; }
-.sts-band--trio .sts-scene-fig { aspect-ratio: 16 / 10; }
-.sts-band--trio .sts-scene-fig:not(:first-child) { aspect-ratio: 1 / 1; }
-.sts-band--trio .sts-scene-fig:not(:first-child) figcaption { left: .9rem; bottom: .8rem; font-size: .625rem; }
-@media (min-width: 768px) {
-  .sts-band--trio { grid-template-columns: repeat(3, 1fr); }
-  .sts-band--trio .sts-scene-fig:first-child { grid-column: auto; }
-  .sts-band--trio .sts-scene-fig, .sts-band--trio .sts-scene-fig:not(:first-child) { aspect-ratio: auto; height: clamp(18rem, 26vw, 26rem); }
-  .sts-band--trio .sts-scene-fig:not(:first-child) figcaption { left: 1.4rem; bottom: 1.4rem; font-size: .6875rem; }
-}
-.sts-band--trio .sts-scene-fig:nth-child(1) img { object-position: 45% 60%; }
-.sts-band--trio .sts-scene-fig:nth-child(2) img { object-position: 55% 55%; }
-.sts-band--trio .sts-scene-fig:nth-child(3) img { object-position: 50% 60%; }
-
 /* Systems 之后、What we cover 之前：单张全宽横幅 */
 .sts-band--wide .sts-scene-fig { aspect-ratio: 16 / 10; }
 @media (min-width: 768px) {
@@ -54,3 +38,27 @@
 .sts-accent-steps li { border-top: 1px solid #ffffff40; padding-top: .9rem; font-size: .9375rem; letter-spacing: .04em; }
 .sts-accent-steps .n { display: block; font-size: .6875rem; letter-spacing: .2em; color: #b9cad8; margin-bottom: .35rem; }
 @media (min-width: 768px) { .sts-accent-steps { grid-template-columns: repeat(4, 1fr); } .sts-accent--a .sts-accent-in { padding-block: 6rem; } }
+
+/* Process 模块内的作业现场图：放在五步流程下方，作为流程的实景补充 */
+.sts-ws { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--border-soft, #14141214); }
+.sts-ws-head { display: grid; gap: .6rem; margin-bottom: 1.75rem; }
+.sts-ws-label { margin: 0; display: inline-flex; align-items: center; gap: .55rem; font-size: .6875rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--accent, #3d5a73); }
+.sts-ws-label::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.sts-ws-lead { margin: 0; font-size: .9375rem; line-height: 1.6; color: var(--text-body, #5c5c56); }
+/* 手机端横向滑动，露出下一张的边缘提示可滑 */
+.sts-ws-grid { display: grid; grid-auto-flow: column; grid-auto-columns: 80%; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: -1.35rem; padding-inline: 1.35rem; scroll-padding-inline: 1.35rem; }
+.sts-ws-grid::-webkit-scrollbar { display: none; }
+.sts-ws-fig { margin: 0; scroll-snap-align: start; }
+.sts-ws-img { overflow: hidden; border-radius: var(--radius-sm, 4px); aspect-ratio: 3 / 2; background: var(--page-alt, #f0f0ec); }
+.sts-ws-img img { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(.88); transition: transform .6s ease, filter .6s ease; }
+.sts-ws-fig:hover .sts-ws-img img { transform: scale(1.035); filter: saturate(1); }
+.sts-ws-fig figcaption { display: grid; gap: .3rem; margin-top: .9rem; }
+.sts-ws-title { font-size: .9375rem; font-weight: 500; letter-spacing: -.01em; color: var(--text-h1, #141412); }
+.sts-ws-desc { font-size: .8125rem; line-height: 1.55; color: var(--text-muted, #8a8a84); }
+@media (min-width: 768px) {
+  .sts-ws { margin-top: 4rem; padding-top: 2.5rem; }
+  .sts-ws-head { grid-template-columns: auto 1fr; align-items: baseline; column-gap: 2rem; margin-bottom: 2rem; }
+  .sts-ws-lead { justify-self: end; text-align: right; }
+  .sts-ws-grid { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; overflow: visible; margin-inline: 0; padding-inline: 0; }
+  .sts-ws-img { aspect-ratio: 16 / 10; }
+}
